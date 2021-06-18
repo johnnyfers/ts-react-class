@@ -1,5 +1,6 @@
 import React from "react"
 import TodosItems from "./TodosItems"
+import classes from './styles.module.css'
 
 interface Todo {
     id: string,
@@ -8,7 +9,7 @@ interface Todo {
 
 const Todos: React.FC<{ items: Todo[] }> = (props) => {
     return (
-        <ul>
+        <ul className={classes.todos}>
            {props.items.map((item)=> 
                <TodosItems id={item.id} text={item.text} />
            )}

@@ -1,16 +1,30 @@
 import './App.css';
+import NewTodo from './components/NewTodo';
 import Todos from './components/Todos/index'
+import { useState } from 'react'
+
+interface Todo {
+  id: string,
+  text: string
+}
 
 function App() {
 
-  const dummyTodos = [
-    { id: Math.random().toString(), text: 'learn react' },
-    { id: Math.random().toString(), text: 'learn ts' }
-  ]
+  const [todos, setTodos] = useState<Todo[]>([])
+
+  const addTodoHandler = (id: string, text: string) => {
+
+    const newTodo = {id, text}
+
+    setTodos((prevTodos)=> {
+      return prevTodos.concat(newTodo)
+    })
+  }
 
   return (
     <div className="App">
-      <Todos items={dummyTodos} />
+      <NewTodo onAddTodo={addTodoHandler}/>
+      <Todos items={todos} />
     </div>
   );
 }
