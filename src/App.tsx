@@ -1,4 +1,3 @@
-import './App.css';
 import NewTodo from './components/NewTodo';
 import Todos from './components/Todos/index'
 import { useState } from 'react'
@@ -21,10 +20,16 @@ function App() {
     })
   }
 
+  const deleteRowHandler = (id: string)=> {
+    setTodos((prevTodos)=> {
+      return prevTodos.filter(todo=>todo.id !== id)
+    })
+  }
+
   return (
     <div className="App">
       <NewTodo onAddTodo={addTodoHandler}/>
-      <Todos items={todos} />
+      <Todos onDeleteRow={deleteRowHandler} items={todos} />
     </div>
   );
 }

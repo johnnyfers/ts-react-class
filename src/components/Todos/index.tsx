@@ -7,11 +7,12 @@ interface Todo {
     text: string
 }
 
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC<{ items: Todo[]; onDeleteRow: (id: string)=> void }> = (props) => {
+
     return (
         <ul className={classes.todos}>
            {props.items.map((item)=> 
-               <TodosItems id={item.id} text={item.text} />
+               <TodosItems onDeleteRow={props.onDeleteRow.bind(null, item.id)} id={item.id} text={item.text} />
            )}
         </ul>
 
